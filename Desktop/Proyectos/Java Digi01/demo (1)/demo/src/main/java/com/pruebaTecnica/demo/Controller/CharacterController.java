@@ -5,14 +5,17 @@
 package com.pruebaTecnica.demo.Controller;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pruebaTecnica.demo.ML.Personaje;
 import java.util.List;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
@@ -36,4 +39,17 @@ public class CharacterController {
         model.addAttribute("personajes", personajes);
         return "Personajes";
     }
+    @GetMapping("/Info/{IdPersonaje}")
+    public String GetById(@PathVariable String IdPersonaje, Model model){
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<List<Personaje>> response = restTemplate.exchange("https://hp-api.onrender.com/api/character/" + IdPersonaje, 
+                HttpMethod.GET, 
+                HttpEntity.EMPTY, 
+                new ParameterizedTypeReference<List<Personaje>>() {
+        });
+        List<Personaje> personaje = response.getBody();
+        model.addAttribute("personaje", personaje);
+        return "MasInfo";
+    }
+    
 }

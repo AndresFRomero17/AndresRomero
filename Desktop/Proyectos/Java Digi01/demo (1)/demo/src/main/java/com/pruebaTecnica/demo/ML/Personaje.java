@@ -11,9 +11,10 @@ import java.util.List;
  * @author andre_ydlyfc2
  */
 public class Personaje {
+
     private String id;
     private String name;
-    private List<alternate_names> names;
+    private List<String> alternate_names; // Cambia el nombre y usa el tipo correcto
     private String species;
     private String gender;
     private String house;
@@ -22,16 +23,7 @@ public class Personaje {
     private boolean wizard;
     private String image;
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-    
-    
-
+    // Getters y setters
     public String getId() {
         return id;
     }
@@ -48,12 +40,12 @@ public class Personaje {
         this.name = name;
     }
 
-    public List<alternate_names> getNames() {
-        return names;
+    public List<String> getAlternate_names() {
+        return alternate_names;
     }
 
-    public void setNames(List<alternate_names> names) {
-        this.names = names;
+    public void setAlternate_names(List<String> alternate_names) {
+        this.alternate_names = alternate_names;
     }
 
     public String getSpecies() {
@@ -103,6 +95,13 @@ public class Personaje {
     public void setWizard(boolean wizard) {
         this.wizard = wizard;
     }
-    
-    
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
 }
